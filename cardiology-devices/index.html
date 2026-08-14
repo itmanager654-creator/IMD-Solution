@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=2">
+<link rel="stylesheet" href="/assets/style-v4.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -157,20 +157,67 @@
       <p class="page-lead">Disposable surgical & cath-lab devices for interventional cardiology — sterile, single-use, supplied to hospitals and clinics across Pakistan.</p>
     </div>
     <div class="page-hero-visual" aria-hidden="true">
-      <svg viewBox="0 0 360 340" xmlns="http://www.w3.org/2000/svg">
-        <path id="heartOutline" class="organ-path heart-beat" pathLength="1" d="M260 90 C 260 45, 215 25, 180 58 L 172 66 L 164 58 C 129 25, 84 45, 84 90 C 84 138, 129 175, 172 232 C 215 175, 260 138, 260 90 Z"/>
-        <path class="organ-path aorta-arch" pathLength="1" d="M172 45 C 172 18, 198 5, 224 13 C 240 18, 246 30, 236 42"/>
-        <path id="vesselPath" class="vessel-tube" pathLength="1" d="M40 320 C 65 285, 82 265, 100 238 C 112 220, 116 208, 130 195"/>
-        <ellipse class="plaque" cx="105" cy="232" rx="9" ry="6" fill="#e05252"/>
-        <g class="stent">
-          <rect x="-7" y="-4" width="14" height="8" rx="3" fill="none" stroke="#9aa0a6" stroke-width="1.6"/>
-          <line x1="-4" y1="-4" x2="-4" y2="4" stroke="#9aa0a6" stroke-width="1.2"/>
-          <line x1="0" y1="-4" x2="0" y2="4" stroke="#9aa0a6" stroke-width="1.2"/>
-          <line x1="4" y1="-4" x2="4" y2="4" stroke="#9aa0a6" stroke-width="1.2"/>
-          <animateMotion dur="3.5s" repeatCount="indefinite" keyPoints="0;1;1;0" keyTimes="0;0.5;0.78;1" calcMode="linear" begin="1s">
-            <mpath href="#vesselPath"/>
+      <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="heartFill" cx="40%" cy="35%" r="75%">
+            <stop offset="0%" stop-color="#e8536c"/>
+            <stop offset="55%" stop-color="#c2185b"/>
+            <stop offset="100%" stop-color="#7a0e2c"/>
+          </radialGradient>
+          <linearGradient id="vesselFill" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#d94060"/>
+            <stop offset="100%" stop-color="#8b1538"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Main heart mass: left + right ventricle, tapering to apex -->
+        <path class="heart-body" fill="url(#heartFill)" d="M150 130 C 108 108, 72 132, 70 172 C 68 208, 96 232, 118 262 C 142 295, 165 325, 195 375 C 228 328, 255 288, 272 250 C 288 214, 292 182, 270 152 C 252 128, 218 120, 196 138 C 184 118, 168 112, 150 130 Z"/>
+
+        <!-- Aorta arch + branch vessels (top) -->
+        <path class="heart-vessel" fill="url(#vesselFill)" d="M198 135 C 196 95, 208 65, 236 52 C 250 46, 260 50, 262 62 C 263 72, 254 76, 246 82 C 260 84, 272 92, 272 106 C 272 118, 262 126, 250 124 C 244 148, 234 158, 218 152 Z"/>
+        <path class="heart-vessel" fill="url(#vesselFill)" d="M226 55 C 224 40, 228 26, 238 18 C 244 14, 250 17, 250 24 C 250 30, 244 33, 240 38 Z"/>
+
+        <!-- Pulmonary artery (shorter tube, right of aorta) -->
+        <path class="heart-vessel" fill="url(#vesselFill)" d="M244 128 C 250 105, 262 90, 280 86 C 290 84, 296 90, 293 99 C 291 106, 282 108, 276 114 C 282 120, 284 130, 277 135 C 270 140, 262 136, 260 128 Z"/>
+
+        <!-- Coronary arteries branching over the surface -->
+        <path class="coronary-line" pathLength="1" d="M188 155 C 172 180, 158 205, 148 235 C 142 253, 140 268, 145 285"/>
+        <path class="coronary-line" pathLength="1" d="M170 200 C 155 210, 142 218, 128 222"/>
+        <path class="coronary-line" pathLength="1" d="M160 240 C 148 248, 138 253, 126 254"/>
+        <path id="coronaryMotion" class="coronary-line" pathLength="1" d="M200 160 C 214 190, 224 220, 222 255 C 221 272, 216 285, 206 296"/>
+
+        <!-- Self-expanding stent travelling along the right coronary artery to the narrowed spot -->
+        <ellipse class="plaque" cx="220" cy="252" rx="9" ry="6" fill="#ffb703"/>
+        <g class="stent-self">
+          <rect x="-8" y="-4" width="16" height="8" rx="3" fill="none" stroke="#e8e8ec" stroke-width="1.8"/>
+          <line x1="-5" y1="-4" x2="-5" y2="4" stroke="#e8e8ec" stroke-width="1.2"/>
+          <line x1="-1.5" y1="-4" x2="-1.5" y2="4" stroke="#e8e8ec" stroke-width="1.2"/>
+          <line x1="2" y1="-4" x2="2" y2="4" stroke="#e8e8ec" stroke-width="1.2"/>
+          <line x1="5.5" y1="-4" x2="5.5" y2="4" stroke="#e8e8ec" stroke-width="1.2"/>
+          <animateMotion dur="4.2s" repeatCount="indefinite" keyPoints="0;1;1;0" keyTimes="0;0.45;0.75;1" calcMode="linear" begin="1.6s">
+            <mpath href="#coronaryMotion"/>
           </animateMotion>
         </g>
+
+        <!-- Labels with leader lines -->
+        <path class="leader-line" d="M244 60 L 290 40" style="animation-delay:1.7s"/>
+        <text class="anat-label" x="292" y="38" style="animation-delay:1.7s">Aorta</text>
+
+        <path class="leader-line" d="M280 100 L 330 95" style="animation-delay:1.9s"/>
+        <text class="anat-label" x="332" y="98" style="animation-delay:1.9s">Pulmonary Artery</text>
+
+        <path class="leader-line" d="M110 190 L 30 178" style="animation-delay:2.1s"/>
+        <text class="anat-label" x="4" y="182" style="animation-delay:2.1s">Left Ventricle</text>
+
+        <path class="leader-line" d="M255 200 L 320 210" style="animation-delay:2.3s"/>
+        <text class="anat-label" x="322" y="213" style="animation-delay:2.3s">Right Ventricle</text>
+
+        <path class="leader-line" d="M150 240 L 60 258" style="animation-delay:2.5s"/>
+        <text class="anat-label" x="12" y="262" style="animation-delay:2.5s">Coronary Artery</text>
+
+        <path class="leader-line" d="M225 262 L 300 300" style="animation-delay:2.7s"/>
+        <text class="anat-label" x="240" y="316" style="animation-delay:2.7s">Self-Expanding</text>
+        <text class="anat-label" x="240" y="330" style="animation-delay:2.7s">Stent</text>
       </svg>
     </div>
   </div>
